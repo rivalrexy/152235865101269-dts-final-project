@@ -12,7 +12,12 @@ const getForecast = (city) => {
     `/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
   );
 };
+const getArticle = (from, to) => {
+  return http.baseArticle.get(
+    `/v2/search?q=Cuaca&countries=ID&page_size=10&from='${from}'&to='${to}'`
+  );
+};
 
-const values = { getWeather, getForecast };
+const values = { getWeather, getForecast, getArticle };
 
 export default values;

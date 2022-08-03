@@ -6,7 +6,6 @@ import CardMapLeaflet from "../components/CardMapLeaflet";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { auth } from "../services/FirebaseConfig";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {

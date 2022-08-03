@@ -7,6 +7,13 @@ const baseWeather = axios.create({
   },
 });
 
-const values = { baseWeather };
+const baseArticle = axios.create({
+  baseURL: "https://api.newscatcherapi.com/",
+  headers: {
+    "X-API-KEY": process.env.REACT_APP_NEWSCATCHER_API,
+  },
+});
+
+const values = { baseWeather, baseArticle };
 
 export default values;

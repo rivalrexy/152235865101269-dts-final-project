@@ -6,6 +6,8 @@ import CityDetail from "./containers/CityDetail";
 import SignUp from "./containers/SignUp";
 import ResetPassword from "./containers/ResetPassword";
 import { Routes, Route } from "react-router-dom";
+import About from "./containers/About";
+import Article from "./containers/Article";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="reset" element={<ResetPassword />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="/" element={<Home />}></Route>
+          <Route path="about" element={<About />}></Route>
+          <Route path="article" element={<Article />}></Route>
           <Route path="forecast/:country" element={<CityDetail />}></Route>
         </Routes>
         <footer className="align-bottom">
