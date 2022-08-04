@@ -3,13 +3,10 @@ import getWeatherbyCityService from "../services/Endpoint";
 import SearchBar from "../components/SearchBar";
 import CardWeather from "../components/CardWeather";
 import CardMapLeaflet from "../components/CardMapLeaflet";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
-import { auth } from "../services/FirebaseConfig";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
-  const [user, loading] = useAuthState(auth);
   const [main, setMain] = useState([]);
   const [cordLon, setCordLon] = useState(106.816666);
   const [cordLat, setCordLat] = useState(-6.2);

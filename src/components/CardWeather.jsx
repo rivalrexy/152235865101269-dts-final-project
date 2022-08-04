@@ -1,33 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { format } from "date-fns";
 import { useState, useEffect } from "react";
 import getWeatherbyCityService from "../services/Endpoint";
 
 const CardWeather = ({ payload, city, weather, wind, date }) => {
   const [mainJakarta, setMainJakarta] = useState([]);
-  const [cordLonJakarta, setCordLonJakarta] = useState(106.816666);
-  const [cordLatJakarta, setCordLatJakarta] = useState(-6.2);
   const [cityJakarta, setCityJakarta] = useState("Jakarta");
   const [weatherJakarta, setWeatherJakarta] = useState("");
-  const [windJakarta, setWindJakarta] = useState("");
   const [dateJakarta, setDateJakarta] = useState("");
 
   const [mainBandung, setMainBandung] = useState([]);
-  const [cordLonBandung, setCordLonBandung] = useState(107.627449);
-  const [cordLatBandung, setCordLatBandung] = useState(-6.932694);
   const [cityBandung, setCityBandung] = useState("Bandung");
   const [weatherBandung, setWeatherBandung] = useState("");
-  const [windBandung, setWindBandung] = useState("");
-  const [dateBandung, setDateBandung] = useState("");
 
   const [mainSurabaya, setMainSurabaya] = useState([]);
-  const [cordLonSurabaya, setCordLonSurabaya] = useState(112.808304);
-  const [cordLatSurabaya, setCordLatSurabaya] = useState(-7.275973);
   const [citySurabaya, setCitySurabaya] = useState("Surabaya");
   const [weatherSurabaya, setWeatherSurabaya] = useState("");
-  const [windSurabaya, setWindSurabaya] = useState("");
-  const [dateSurabaya, setDateSurabaya] = useState("");
 
   useEffect(() => {
     mainDataJakarta("jakarta");
@@ -43,11 +31,8 @@ const CardWeather = ({ payload, city, weather, wind, date }) => {
       .getWeather(city)
       .then((response) => {
         setMainJakarta(response.data.main);
-        setCordLonJakarta(response.data.coord.lon);
-        setCordLatJakarta(response.data.coord.lat);
         setCityJakarta(response.data.name);
         setWeatherJakarta(response.data.weather[0]);
-        setWindJakarta(response.data.wind);
         setDateJakarta(converDate(response.data.dt));
         //console.log(response.data.dt);
       })
@@ -59,12 +44,8 @@ const CardWeather = ({ payload, city, weather, wind, date }) => {
       .getWeather(city)
       .then((response) => {
         setMainBandung(response.data.main);
-        setCordLonBandung(response.data.coord.lon);
-        setCordLatBandung(response.data.coord.lat);
         setCityBandung(response.data.name);
         setWeatherBandung(response.data.weather[0]);
-        setWindBandung(response.data.wind);
-        setDateBandung(converDate(response.data.dt));
         //console.log(response.data.dt);
       })
       .catch((e) => {});
@@ -75,12 +56,8 @@ const CardWeather = ({ payload, city, weather, wind, date }) => {
       .getWeather(city)
       .then((response) => {
         setMainSurabaya(response.data.main);
-        setCordLonSurabaya(response.data.coord.lon);
-        setCordLatSurabaya(response.data.coord.lat);
         setCitySurabaya(response.data.name);
         setWeatherSurabaya(response.data.weather[0]);
-        setWindSurabaya(response.data.wind);
-        setDateSurabaya(converDate(response.data.dt));
         //console.log(response.data.dt);
       })
       .catch((e) => {});
@@ -147,11 +124,11 @@ const CardWeather = ({ payload, city, weather, wind, date }) => {
           </Link>
         </div>
 
-        <div class="flex justify-center">
+        <div className="flex justify-center">
           <h1 className="self-auto text-gray-800 text-2xl mb-4 mt-4">
             Top 3 City Weather
           </h1>
-          <span class="animate-ping relative inline-flex rounded-full h-3 w-3  mb-4 mt-4 bg-sky-500"></span>
+          <span className="animate-ping relative inline-flex rounded-full h-3 w-3  mb-4 mt-4 bg-sky-500"></span>
         </div>
         <h1 className="text-gray-500">{dateJakarta}</h1>
         <div className="grid grid-cols-4 gap-4 mt-2">

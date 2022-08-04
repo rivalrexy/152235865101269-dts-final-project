@@ -1,38 +1,4 @@
-import { useState, useEffect } from "react";
-import { BsCloudFog2Fill } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, resetPasswordFB } from "../services/FirebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-
 const CardAbout = () => {
-  const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const emailHandler = (event) => {
-    setData({
-      ...data,
-      email: event.target.value,
-    });
-  };
-
-  const resetPasswordFunc = (e) => {
-    e.preventDefault();
-    resetPasswordFB(data.email);
-  };
-
-  useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (user) {
-      navigate("/");
-    }
-  }, [loading, user, navigate]);
-
   return (
     // <div className="basis-1/4 bg-slate-500 rounded-xl self-center">
     <div className="flex justify-center mt-auto mb-auto">
@@ -45,7 +11,7 @@ const CardAbout = () => {
             alt=""
           />
         </div>
-        <ul class="list-inside text-left mb-5">
+        <ul className="list-inside text-left mb-5">
           <li className="mb-4">
             <p className="font-semibold">Github</p>
             <a href="https://github.com/rivalrexy">

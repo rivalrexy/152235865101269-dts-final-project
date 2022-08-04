@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const CardSignUp = () => {
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -111,6 +111,7 @@ const CardSignUp = () => {
 
   const validateEmail = (email) => {
     return email.match(
+      // eslint-disable-next-line no-useless-escape
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   };

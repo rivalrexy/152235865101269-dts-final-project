@@ -10,7 +10,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -47,10 +46,10 @@ const TableForecast = ({ city }) => {
   return (
     <div className="flex basis-1/2 flex-col text-start gap-5 mt-8 ml-10 text-2xl text-gray-900">
       <div className="grid grid-cols-3 gap-4 mt-2">
-        {datas.map((item) => {
+        {datas.map((item, i) => {
           return (
             <>
-              <h1>{item.dt_txt}</h1>
+              <h1 key={i}>{item.dt_txt}</h1>
               <div className="flex flex-row">
                 <img
                   src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}

@@ -34,7 +34,6 @@ const CardReset = () => {
   }, [loading, user, navigate]);
 
   return (
-    // <div className="basis-1/4 bg-slate-500 rounded-xl self-center">
     <div className="flex justify-center mt-auto mb-auto">
       <div className="shadow-lg rounded-xl basis-1/4">
         <form>

@@ -9,6 +9,7 @@ const Article = () => {
   const [link, setLink] = useState("");
   const [publishedDate, setPublishedDate] = useState("");
   const [summary, setSummary] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   mainData("2022/08/01","2022/08/03");
@@ -16,17 +17,35 @@ const Article = () => {
   // }, []);
 
   useEffect(() => {
-    mainData("2022/08/01", "2022/08/03");
-    console.log(articles);
+    mainData(dateYesterday(), dateNow());
+    //console.log(converDate.toString());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const converDate = (currentTimestamp) => {
-    return new Date(currentTimestamp * 1000).toLocaleDateString("en-US");
+  const dateNow = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = yyyy + "/" + mm + "/" + dd;
+    return today;
   };
-  const mainData = (to, from) => {
+
+  const dateYesterday = () => {
+    let date = new Date();
+    date.setDate(date.getDate() - 1);
+    let dd = String(date.getDate()).padStart(2, "0");
+    let mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = date.getFullYear();
+
+    date = yyyy + "/" + mm + "/" + dd;
+    return date;
+  };
+
+  const mainData = (from, to) => {
     getArticleService
-      .getArticle(to, from)
+      .getArticle(from, to)
       .then((response) => {
         setArticles(response.data.articles);
         setExcerpt(response.data.articles[0].excerpt);
@@ -34,6 +53,7 @@ const Article = () => {
         setLink(response.data.articles[0].link);
         setPublishedDate(response.data.articles[0].published_date);
         setSummary(response.data.articles[0].summary);
+        setLoading(false);
       })
       .catch((e) => {});
   };
@@ -46,6 +66,7 @@ const Article = () => {
       link={link}
       publishedDate={publishedDate}
       summary={summary}
+      loadStatus={loading}
     />
   );
 };

@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import { BsGoogle, BsCloudFog2Fill } from "react-icons/bs";
+import { useState } from "react";
+import { BsCloudFog2Fill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, registerFB, loginGoogleFB } from "../services/FirebaseConfig";
 import { logoutFB } from "../services/FirebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,10 +13,11 @@ const Navbar = () => {
     e.preventDefault();
     //await logoutFB();
     toast.promise(logoutFB(), {
+      pending: "Please wait",
       success: "Logout successfully",
       error: "Failed",
     });
-    console.log(logoutFB());
+    //console.log(logoutFB());
     setTimeout(() => {
       navigate("/login");
     }, 3000);
